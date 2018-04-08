@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+"use strict";
 
 var path = require('path');
 var fs = require("fs");
@@ -43,14 +44,20 @@ console.log("Done\n");
 
 console.log("Creating geojson file...\n");
 var geojson = {};
-geojson['type'] = 'FeatureCollection';
-geojson['features'] = [];
+geojson.type = 'FeatureCollection';
+geojson.features = [];
 
 for(var key in jsonContent) {
-    //console.log(typeof feature); console.log(feature);
+
+    var id = JSON.parse(JSON.stringify(jsonContent[key].id));
+    var taskstatus = JSON.parse(JSON.stringify(jsonContent[key].status));
     var feature = JSON.parse(JSON.stringify(jsonContent[key].geometries.features)).pop();
+    // Add some properties from the task to the geojson properties
+    feature.properties.id = id;
+    feature.properties.status = taskstatus;
+
     if ( gjcheck.valid(feature) && gjcheck.isFeature(feature) ) {
-        geojson['features'].push(feature);
+        geojson.features.push(feature);
     } else {
         console.log('Feature is not valid geojson');
         process.exit(0);

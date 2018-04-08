@@ -32,7 +32,14 @@ Download the task list in json format using curl
 
 Then run the convertor on this file
 
-    convert tasks.json tasks.geojson
+    ./maprtogeojson.js tasks.json tasks.geojson
+
+You can check the example in the examples directory, it is made using:
+
+    ./maprtogeojson.js example/pretty.json example/outputdata.geojson
+
+
+This program is only tested on linux
 
 <a name="Credits"></a>
 ## Credits
