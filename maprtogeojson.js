@@ -1,12 +1,32 @@
 #!/usr/bin/env node
 
-var input = 'pretty.geojson';
-var output = 'outputdata.geojson';
-
+var path = require('path');
 var fs = require("fs");
 var gjcheck = require('geojson-validation');
 
-console.log("Reading file...\n");
+// Command line arguments
+var args = process.argv.slice(2);
+console.dir(args);
+
+var input = null;
+var output = null;
+
+if(!!args[0]){
+    input = args[0];
+} else {
+    console.log('Error: Please pass atleast an input file to convert');
+    process.exit(0);
+}
+
+var filename = path.basename(input, '.json');
+if(!!args[1]){
+    output = args[1];
+} else {
+    console.log('Notice: No output file specified, using geojson extension with basename');
+    output = filename + ',geojson';
+}
+
+console.log("Reading file "+ input +" ...\n");
 var data = fs.readFileSync(input);
 console.log("Done\n");
 
@@ -30,11 +50,12 @@ for(var key in jsonContent) {
     }
 }
 
+console.log("Writing to "+ output +" !");
 fs.writeFile(output,JSON.stringify(geojson), function(err) {
     if(err) {
         console.log(err);
     }
-    console.log("saved in "+ output +" !");
+    console.log("all data saved in "+ output +" !");
 });
 
-console.log("All done...\n");
+console.log("done...\n");

@@ -18,6 +18,7 @@
   "homepage": "https://github.com/gplv2/maproulette2geojson#readme",
   "dependencies": {
     "fs": "0.0.1-security",
-    "geojson-validation": "^0.2.0"
+    "geojson-validation": "^0.2.0",
+    "path": "^0.12.7"
   }
 }
