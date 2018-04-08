@@ -1,0 +1,23 @@
+{
+  "name": "maproulette2geojson",
+  "version": "1.0.0",
+  "description": "Transcode the output of a maproulette task list to geojson for QGIS",
+  "main": "maprtogeojson.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gplv2/maproulette2geojson.git"
+  },
+  "author": "Glenn Plas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gplv2/maproulette2geojson/issues"
+  },
+  "homepage": "https://github.com/gplv2/maproulette2geojson#readme",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "geojson-validation": "^0.2.0"
+  }
+}
