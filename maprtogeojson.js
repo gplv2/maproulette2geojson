@@ -6,7 +6,7 @@ var gjcheck = require('geojson-validation');
 
 // Command line arguments
 var args = process.argv.slice(2);
-console.dir(args);
+//console.dir(args);
 
 var input = null;
 var output = null;
@@ -18,15 +18,22 @@ if(!!args[0]){
     process.exit(0);
 }
 
+if (fs.existsSync(input)) {
+    console.log("Reading file "+ input +" ...\n");
+} else {
+    console.log('Error: Cannot open file '+input);
+    process.exit(0);
+}
+
 var filename = path.basename(input, '.json');
 if(!!args[1]){
     output = args[1];
 } else {
     console.log('Notice: No output file specified, using geojson extension with basename');
-    output = filename + ',geojson';
+    output = filename + '.geojson';
 }
 
-console.log("Reading file "+ input +" ...\n");
+// console.log("Reading file "+ input +" ...\n");
 var data = fs.readFileSync(input);
 console.log("Done\n");
 
